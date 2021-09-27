@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         List<Item> eShop;
         MySQLMethods method = new MySQLMethods();
+        Main mainGet = new Main();
 
         System.out.println("\n-----------------------------------------------------Výpis dle vybraného id:");
         final int ID_WHAT_I_WANT1 = 4;
@@ -44,7 +45,7 @@ public class Main {
         System.out.println(getAllInfo(eShop));
     }
 
-    private static String getInfo1(Item item){
+    private static String getInfo1(Item item) {
         StringBuilder builder = new StringBuilder();
         builder.append(item.getId() + ", " + item.getPartNo() + ", " + item.getSerialNo() + ", "
                 + item.getName() + ", " + item.getDescription() + ", " + item.getNumberInStock() + ", "
@@ -52,7 +53,7 @@ public class Main {
         return builder.toString();
     }
 
-    private static String getAllInfo (List<Item> items) {
+    private static String getAllInfo(List<Item> items) {
         final int MAX_LENGTH_ID = 5;
         final int MAX_LENGTH_NAME = 18;
         final int MAX_LENGTH_DESCRIPTION = 10;
@@ -65,14 +66,14 @@ public class Main {
                     + item.getPartNo() + " ------ "
                     + item.getSerialNo() + " -- "
                     + item.getName() + " " + dashes(MAX_LENGTH_NAME - item.getName().length()) + " "
-                    + item.getDescription() + " " + ((item.getDescription()==null)?
+                    + item.getDescription() + " " + ((item.getDescription() == null)?
                     dashes(MAX_LENGTH_DESCRIPTION-4):dashes(MAX_LENGTH_DESCRIPTION
                     - item.getDescription().length())) + " " + item.getNumberInStock() + " "
                     + dashes(MAX_LENGTH_NUMBER - item.getNumberInStock().toString().length())
                     + dashes(MAX_LENGTH_PRICE - myFormat.format(item.getPrice()).length()) + " "
                     + myFormat.format(item.getPrice()) + "\n");
         }
-    return builder.toString();
+        return builder.toString();
     }
 
     private static String dashes(int number) {
